@@ -5,6 +5,8 @@ import { MatTable } from '@angular/material/table';
 import { Gateway } from '../../models/gateway.class';
 import { GatewayService } from '../../services/gateway.service';
 import { GatewayListDataSource } from './gateway-datasource';
+import {MatDialog} from '@angular/material/dialog';
+import { AddGatewayDialogComponent } from '../../components/add-gateway-dialog/add-gateway-dialog.component';
 
 @Component({
   selector: 'rila-gateway-list',
@@ -20,7 +22,10 @@ export class GatewayListComponent implements AfterViewInit, OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['view', 'name', 'devices'];
 
-  constructor(private gatewayService: GatewayService) {
+  constructor(
+    private gatewayService: GatewayService,
+    public dialog: MatDialog
+  ) {
     this.dataSource = new GatewayListDataSource();
   }
 
@@ -34,5 +39,15 @@ export class GatewayListComponent implements AfterViewInit, OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(AddGatewayDialogComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
