@@ -17,16 +17,24 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DetailsComponent } from './pages/details/details.component';
+import { RouterModule } from '@angular/router';
+import { MatListModule } from '@angular/material/list';
+import {MatChipsModule} from '@angular/material/chips';
+import { DeviceListComponent } from './components/device-list/device-list.component';
 
 
 @NgModule({
   declarations: [
     GatewayListComponent,
-    AddGatewayDialogComponent
+    AddGatewayDialogComponent,
+    DetailsComponent,
+    DeviceListComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
+    RouterModule,
     GatewaysRoutingModule,
     MatTableModule,
     MatPaginatorModule,
@@ -38,6 +46,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatRadioModule,
     MatCardModule,
     MatDialogModule,
+    MatListModule,
+    MatChipsModule,
     ReactiveFormsModule,
   ],
   providers: [ GatewayService]

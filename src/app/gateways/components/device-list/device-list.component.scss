@@ -1,0 +1,38 @@
+.device {
+  &__table {
+    margin-block-start: 25px;
+    width: 50%;
+  }
+
+  &__status {
+    &--online{
+        color: green;
+    }
+    &--offline{
+        color: red;
+    }
+  }
+}
+
+.mat-column {
+  &-uid {
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+  }
+
+  &-vendor {
+    padding-left: 16px;
+    // font-size: 20px;
+  }
+
+  &-at {
+    font-style: italic;
+  }
+  &-status {
+    // width: 32px;
+    text-align: center;
+    // font-weight: bold;
+  }
+}

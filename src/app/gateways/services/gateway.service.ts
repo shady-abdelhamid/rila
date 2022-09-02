@@ -146,9 +146,66 @@ export class GatewayService {
     ]);
   }
 
-  getDetails(serialNo: string): any {
+  getDetails(serialNo: string): Observable<Gateway> {
     // return this.http.get<any>(CATEGORY.DETAILS(id));
     console.log('get Gateway details');
+    return of(
+      new Gateway({
+        serialNo: 'g1',
+        name: 'alpha',
+        ipv4Address: '123.456.789',
+        devices: [
+          {
+            uId: 'd1',
+            vendor: 'intel',
+            updatedAt: new Date(),
+            status: Status.online,
+          },
+          {
+            uId: 'd2',
+            vendor: 'apple',
+            updatedAt: new Date(),
+            status: Status.offline,
+          },
+          {
+            uId: 'd3',
+            vendor: 'intel',
+            updatedAt: new Date(),
+            status: Status.online,
+          },
+          {
+            uId: 'd4',
+            vendor: 'apple',
+            updatedAt: new Date(),
+            status: Status.online,
+          },
+          {
+            uId: 'd5',
+            vendor: 'intel',
+            updatedAt: new Date(),
+            status: Status.online,
+          },
+          {
+            uId: 'd6',
+            vendor: 'apple',
+            updatedAt: new Date(),
+            status: Status.offline,
+          },
+          {
+            uId: 'd7',
+            vendor: 'intel',
+            updatedAt: new Date(),
+            status: Status.online,
+          },
+          {
+            uId: 'd8',
+            vendor: 'apple',
+            updatedAt: new Date(),
+            status: Status.offline,
+          },
+        ],
+      })
+    );
   }
 
   add(payload: Gateway): Observable<any> {

@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Gateway</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-chip-list aria-label="Color selection">
+      <mat-chip selected>
+        Name: {{ details?.name }}
+      </mat-chip>
+      <mat-chip selected>
+        Serial No: {{ details?.serialNo }}
+      </mat-chip>
+      <mat-chip selected> IPv4: {{ details?.ipv4Address }} </mat-chip>
+    </mat-chip-list>
+
+    <rila-device-list
+      *ngIf="details?.devices"
+      [deviceList]="details?.devices"
+    ></rila-device-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Ok</button>
+  </mat-card-actions>
+</mat-card>
