@@ -145,4 +145,20 @@ export class GatewayService {
       }),
     ]);
   }
+
+  getDetails(serialNo: string): any {
+    // return this.http.get<any>(CATEGORY.DETAILS(id));
+    console.log('get Gateway details');
+  }
+
+  add(payload: Gateway): Observable<any> {
+    // return this.http.post<Gateway>('', payload);
+    console.log('add gateway');
+    return of({});
+  }
+
+  edit(payload: Gateway) {
+    // return this.http.put<Gateway>('', payload);
+    console.log('add gateway');
+  }
 }
