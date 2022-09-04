@@ -5,8 +5,9 @@ import { MatTable } from '@angular/material/table';
 import { Gateway } from '../../models/gateway.class';
 import { GatewayService } from '../../services/gateway.service';
 import { GatewayListDataSource } from './gateway-datasource';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AddGatewayDialogComponent } from '../../components/add-gateway-dialog/add-gateway-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'rila-gateway-list',
@@ -24,6 +25,7 @@ export class GatewayListComponent implements AfterViewInit, OnInit {
 
   constructor(
     private gatewayService: GatewayService,
+    private router: Router,
     public dialog: MatDialog
   ) {
     this.dataSource = new GatewayListDataSource();
@@ -43,11 +45,15 @@ export class GatewayListComponent implements AfterViewInit, OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(AddGatewayDialogComponent, {
-      width: '400px',
+      width: '800px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  redirectToDetails(index: string) {
+    this.router.navigate(['/gateways', index])
   }
 }

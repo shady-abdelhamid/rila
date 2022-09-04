@@ -1,0 +1,15 @@
+.device{
+    &__row {
+        display: flex;
+        flex-direction: row;
+      }
+      
+      &__col {
+        flex: 1;
+        margin-right: 20px;
+      }
+      
+      &__col:last-child {
+        margin-right: 0;
+      }
+}
