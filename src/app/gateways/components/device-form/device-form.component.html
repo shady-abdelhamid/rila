@@ -1,0 +1,38 @@
+<section *ngIf="form" [formGroup]="form" class="device__row">
+  <div class="device__col">
+    <mat-form-field class="device__column">
+      <input matInput placeholder="UID" formControlName="uid" />
+      <mat-error *ngIf="form.controls['uid'].hasError('required')">
+        UID is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="device__col">
+    <mat-form-field class="device__column">
+      <input matInput placeholder="Vendor" formControlName="vendor" />
+      <mat-error *ngIf="form.controls['vendor'].hasError('required')">
+        Vendor is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="device__col">
+    <mat-form-field>
+      <mat-select formControlName="status" placeholder="Status">
+        <mat-option value="ONLINE">Online</mat-option>
+        <mat-option value="OFFLINE">Offline</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="form.valid && !canBeRemoved" class="device__col">
+    <button mat-icon-button color="primary" type="button" (click)="onAddClick()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <div *ngIf="form.invalid || canBeRemoved" class="device__col">
+    <button mat-icon-button color="warn" type="button" (click)="onRemoveClick()">
+      <mat-icon>remove</mat-icon>
+    </button>
+  </div>
+</section>
