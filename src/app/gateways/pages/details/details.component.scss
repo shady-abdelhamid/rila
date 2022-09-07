@@ -1,5 +1,30 @@
-.gateway {
-    &__info {
-        // width: 200px;
+.gateway{
+    &__row {
+      display: flex;
+      flex-direction: row;
     }
-}
+  
+    &__col {
+      flex: 1;
+      margin-right: 20px;
+    }
+
+    &__label {
+        color: gray;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: capitalize;
+      }
+    
+      p {
+        overflow-wrap: break-word;
+        font-size: 12px;
+        font-weight: 400;
+      }
+  }
+
+
+
+  .mat-card-content {
+    padding: 20px;
+  }

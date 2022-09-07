@@ -1,10 +1,7 @@
 <section *ngIf="form" [formGroup]="form" class="device__row">
-  <div class="device__col">
+  <div *ngIf="isEdit" class="device__col">
     <mat-form-field class="device__column">
-      <input matInput placeholder="UID" formControlName="uid" />
-      <mat-error *ngIf="form.controls['uid'].hasError('required')">
-        UID is <strong>required</strong>
-      </mat-error>
+      <input matInput placeholder="UID" formControlName="uid"/>
     </mat-form-field>
   </div>
   <div class="device__col">

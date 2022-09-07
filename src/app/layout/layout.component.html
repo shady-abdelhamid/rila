@@ -16,7 +16,7 @@
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false"
+    [opened]="false"
   >
     <mat-toolbar>Rila</mat-toolbar>
     <mat-nav-list>

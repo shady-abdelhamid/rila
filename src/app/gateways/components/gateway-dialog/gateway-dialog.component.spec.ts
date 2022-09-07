@@ -7,15 +7,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 
-import { AddGatewayDialogComponent } from './add-gateway-dialog.component';
+import { GatewayDialogComponent } from './gateway-dialog.component';
 
 describe('AddGatewayDialogComponent', () => {
-  let component: AddGatewayDialogComponent;
-  let fixture: ComponentFixture<AddGatewayDialogComponent>;
+  let component: GatewayDialogComponent;
+  let fixture: ComponentFixture<GatewayDialogComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddGatewayDialogComponent ],
+      declarations: [ GatewayDialogComponent ],
       imports: [
         NoopAnimationsModule,
         ReactiveFormsModule,
@@ -29,7 +29,7 @@ describe('AddGatewayDialogComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddGatewayDialogComponent);
+    fixture = TestBed.createComponent(GatewayDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

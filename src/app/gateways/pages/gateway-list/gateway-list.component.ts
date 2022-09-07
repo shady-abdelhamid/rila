@@ -6,8 +6,9 @@ import { Gateway } from '../../models/gateway.class';
 import { GatewayService } from '../../services/gateway.service';
 import { GatewayListDataSource } from './gateway-datasource';
 import { MatDialog } from '@angular/material/dialog';
-import { AddGatewayDialogComponent } from '../../components/add-gateway-dialog/add-gateway-dialog.component';
+import { GatewayDialogComponent } from '../../components/gateway-dialog/gateway-dialog.component';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'rila-gateway-list',
@@ -20,40 +21,47 @@ export class GatewayListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatTable) table!: MatTable<Gateway>;
   dataSource: GatewayListDataSource;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['view', 'name', 'devices'];
+  displayedColumns = ['view', 'serial', 'name', 'devices'];
 
   constructor(
     private gatewayService: GatewayService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {
     this.dataSource = new GatewayListDataSource();
   }
 
-  ngOnInit(): void {
-    this.gatewayService
-      .getAll()
-      .subscribe((res) => (this.dataSource.data = res));
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    this.gatewayService.getAll().subscribe((res) => {
+      this.dataSource.data = res;
+
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      this.table.dataSource = this.dataSource;
+    });
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(AddGatewayDialogComponent, {
+    const dialogRef = this.dialog.open(GatewayDialogComponent, {
       width: '800px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+
+      if (result) {
+        location.reload();
+
+        this.snackBar.open(`New gateway has been added`, undefined, {
+          duration: 3000,
+        });
+      }
     });
   }
 
   redirectToDetails(index: string) {
-    this.router.navigate(['/gateways', index])
+    this.router.navigate(['/gateways', index]);
   }
 }

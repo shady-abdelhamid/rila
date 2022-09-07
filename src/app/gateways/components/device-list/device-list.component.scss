@@ -1,22 +1,21 @@
 .device {
   &__table {
     margin-block-start: 25px;
-    width: 50%;
   }
 
   &__status {
     &--online{
-        color: green;
+        color: lightgreen;
     }
     &--offline{
-        color: red;
+        color: lightcoral;
     }
   }
 }
 
 .mat-column {
   &-uid {
-    width: 32px;
+    // width: 32px;
     border-right: 1px solid currentColor;
     padding-right: 24px;
     text-align: center;
@@ -27,12 +26,15 @@
     // font-size: 20px;
   }
 
-  &-at {
-    font-style: italic;
+  &-updated-at {
+    padding-left: 16px;
+
   }
   &-status {
     // width: 32px;
     text-align: center;
+    padding-left: 16px;
+
     // font-weight: bold;
   }
 }

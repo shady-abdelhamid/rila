@@ -1,12 +1,12 @@
 <table
   mat-table
   [dataSource]="dataSource"
-  class="mat-elevation-z8 device__table"
+  class="mat-elevation-z1 device__table"
 >
   <!-- UID Column -->
   <ng-container matColumnDef="uid">
     <th mat-header-cell *matHeaderCellDef>UID</th>
-    <td mat-cell *matCellDef="let element">{{ element.uId }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.uid }}</td>
   </ng-container>
 
   <!-- Vendor Column -->

@@ -80,8 +80,8 @@ export class GatewayListDataSource extends DataSource<Gateway> {
       switch (this.sort?.active) {
         case 'name':
           return compare(a.name, b.name, isAsc);
-        case 'serialNo':
-          return compare(+a.serialNo, +b.serialNo, isAsc);
+        case 'serial':
+          return compare(+a.serial, +b.serial, isAsc);
         default:
           return 0;
       }

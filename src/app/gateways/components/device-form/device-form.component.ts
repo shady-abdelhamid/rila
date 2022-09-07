@@ -14,6 +14,7 @@ import {
 export class DeviceFormArrayComponent implements OnInit {
   canBeRemoved: boolean = false;
   
+  @Input() isEdit: boolean = false;
   @Input() form!: FormGroup;
   @Input() index!: number;
   @Output() submitForm = new EventEmitter();

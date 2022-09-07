@@ -1,7 +1,7 @@
 import { Status } from "../types";
 
 export type Device = {
-    uId: string;
+    uid?: string;
     vendor: string;
     updatedAt: Date;
     status: Status

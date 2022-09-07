@@ -1,19 +1,24 @@
-<h2 mat-dialog-title>Add Gateway</h2>
+<h2 mat-dialog-title>{{isEdit() ? 'Update': 'Add'}} Gateway</h2>
 <mat-dialog-content class="mat-typography">
   <form [formGroup]="form" novalidate (ngSubmit)="addGateway()">
-    <div class="row">
+    <div *ngIf="isEdit()" class="row">
       <div class="col">
         <mat-form-field class="full-width">
           <input
             matInput
             placeholder="Serial Number"
-            formControlName="serialNo"
+            formControlName="serial"
+            [disabled]="true"
           />
-          <mat-error *ngIf="form.controls['serialNo'].hasError('required')">
+          <mat-error *ngIf="form.controls['serial'].hasError('required')">
             Serial Number is <strong>required</strong>
           </mat-error>
         </mat-form-field>
       </div>
+
+    </div>
+  
+    <div class="row">
       <div class="col">
         <mat-form-field class="full-width">
           <input matInput placeholder="Name" formControlName="name" />
@@ -30,13 +35,13 @@
             matInput
             placeholder="IPv4 Address"
             pattern="^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$"
-            formControlName="ipv4Address"
+            formControlName="ipv4"
           />
           <mat-hint>xxx.xxx.xxx.xxx </mat-hint>
-          <mat-error *ngIf="form.controls['ipv4Address'].hasError('required')">
+          <mat-error *ngIf="form.controls['ipv4'].hasError('required')">
             IPv4 Address is <strong>required</strong>
           </mat-error>
-          <mat-error *ngIf="form.controls['ipv4Address']"
+          <mat-error *ngIf="form.controls['ipv4']"
             >Invalid IPv4 address</mat-error
           >
         </mat-form-field>
@@ -64,6 +69,7 @@
               [index]="deviceIndex"
               (submitForm)="onSubmitDevice($event)"
               (removeForm)="onRemoveDevice($event)"
+              [isEdit]="isEdit()"
             ></rila-device-form>
           </ng-container>
         </div>
@@ -78,6 +84,7 @@
     color="primary"
     [mat-dialog-close]="true"
     [disabled]="form.invalid"
+    (click)="onClick()"
     cdkFocusInitial
   >
     Submit
