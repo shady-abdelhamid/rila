@@ -11,6 +11,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Device } from '../../models/device.type';
 import { Gateway } from '../../models/gateway.class';
 import { GatewayService } from '../../services/gateway.service';
+import { LIMIT } from '../../types';
 
 @Component({
   selector: 'rila-gateway-dialog',
@@ -22,6 +23,7 @@ export class GatewayDialogComponent implements OnInit {
 
   hasUnitNumber = false;
   hideBtn: boolean = false;
+  gateway!: Gateway;
 
   get devices() {
     return this.form.controls['devices'] as FormArray;
@@ -35,20 +37,23 @@ export class GatewayDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const gateway = this.data?.gateway as Gateway;
+    this.gateway = this.data?.gateway as Gateway;
 
     this.form = this.fb.group({
-      name: [gateway?.name || null, Validators.required],
-      ipv4: [gateway?.ipv4 || null, Validators.required],
-      devices: this.fb.array([], Validators.required),
+      name: [this.gateway?.name || null, Validators.required],
+      ipv4: [this.gateway?.ipv4 || null, Validators.required],
+      devices: this.fb.array(
+        [],
+        [Validators.required, Validators.maxLength(LIMIT)]
+      ),
     });
 
-    if (gateway) {
-      const serialControl = new FormControl(gateway.serial);
+    if (this.gateway) {
+      const serialControl = new FormControl(this.gateway.serial);
       serialControl.disable();
       this.form.addControl('serial', serialControl);
 
-      gateway.devices.forEach((device) => {
+      this.gateway.devices.forEach((device) => {
         this.prepDevice(device);
       });
     }
@@ -82,6 +87,7 @@ export class GatewayDialogComponent implements OnInit {
   }
 
   onAddDeviceClick() {
+    if (this.gateway?.isFullyOccupied) return;
     this.prepDevice();
   }
 

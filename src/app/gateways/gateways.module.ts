@@ -24,6 +24,7 @@ import { DeviceFormArrayComponent } from './components/device-form/device-form.c
 import { DetailsComponent } from './pages/details/details.component';
 import { DeviceListComponent } from './components/device-list/device-list.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatChipsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    MatProgressBarModule
+    
   ],
   providers: [GatewayService],
 })

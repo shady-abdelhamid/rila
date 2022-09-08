@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>{{isEdit() ? 'Update': 'Add'}} Gateway</h2>
+<h2 mat-dialog-title>{{ isEdit() ? "Update" : "Add" }} Gateway</h2>
 <mat-dialog-content class="mat-typography">
   <form [formGroup]="form" novalidate (ngSubmit)="addGateway()">
     <div *ngIf="isEdit()" class="row">
@@ -15,9 +15,8 @@
           </mat-error>
         </mat-form-field>
       </div>
-
     </div>
-  
+
     <div class="row">
       <div class="col">
         <mat-form-field class="full-width">
@@ -60,6 +59,16 @@
           Add device
         </button>
 
+        <div class="mb-2" *ngIf="devices.length">
+          <mat-progress-bar
+            mode="determinate"
+            [value]="devices.length * 10"
+          ></mat-progress-bar>
+          <span>prephiral devices: {{ devices.length }}</span>
+          <mat-error *ngIf="form.controls['devices'].hasError('maxlength')"
+            >Devices count overlimit. remove one</mat-error
+          >
+        </div>
         <div formArrayName="devices">
           <ng-container
             *ngFor="let deviceForm of devices?.controls; index as deviceIndex"
