@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'rila-api-prod-rila-api-8qbujn.mo2.mogenius.io:80'
+  apiUrl: 'http://localhost:3000'
+  // apiUrl: 'rila-api-mogen-prod-rila-lrkzl6.mo1.mogenius.io:80'
 
 };
